@@ -1,14 +1,14 @@
 #include <iostream>
+#include <vector>
 #include "insertion_sort.h"
 
 int main(void) {
-  int numbers[] = { 31, 41, 59, 26, 41, 58 };
+  std::vector<int> numbers = { 31, 41, 59, 26, 41, 58 };
 
-  InsertionSort(numbers, numbers + 6);
+  InsertionSort(numbers);
 
   for (int number : numbers)
     std::cout << number << ' ';
-  std::cout << std::endl;
 
   return 0;
 }

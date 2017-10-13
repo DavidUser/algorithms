@@ -12,14 +12,14 @@
  */
 
 template <typename Iterator>
-void InsertionSort(Iterator *begin, Iterator *end) {
+void InsertionSort(Iterator begin, Iterator end) {
   // from 2th element to the end
-  for (Iterator* ivariant = begin + 1; ivariant != end; ++ivariant) {
+  for (Iterator ivariant = begin + 1; ivariant != end; ++ivariant) {
     // save key element because this in-place sort will overwrite those value
     auto key = *ivariant; // element to insert sorted
 
     // insert key on orded [begin, ivariant)
-    Iterator* sorter = ivariant - 1; 
+    Iterator sorter = ivariant - 1; 
     while (sorter != (begin - 1) // guard clause, should be at least on begin
         && key < *sorter) { // key should be put somewhere at left
       *(sorter + 1) = *sorter; // move greater value to the right 
@@ -30,3 +30,10 @@ void InsertionSort(Iterator *begin, Iterator *end) {
     *(sorter + 1) = key; // put key on correct position
   }
 }
+
+// Specialization to STL collections
+template <typename Collection>
+void InsertionSort(Collection &collection) {
+  InsertionSort(collection.begin(), collection.end());
+}
+
